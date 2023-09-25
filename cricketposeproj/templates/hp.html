@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+.row {
+  display: -ms-flexbox; /* IE 10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE 10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  -ms-flex: 50%; /* IE 10 */
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Styles for the navigation bar */
+.navbar {
+  background-color: #008B8B;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Styles for the result box */
+.result-box {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  margin: 80px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Styles for the chart */
+.chart-box {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar">
+  <a class="active" href="{{ url_for('about') }}">Back</a>
+
+</div>
+<div class="result-box">
+  <h4 style='color: white; background-color: #008B8B; display: inline-block; white-space: nowrap;'>The Scanned Image is: {{aa}} {{b}}%</h4>
+ </div>
+  <h5><p><center>The Image is {{aa}} Image we predicted that the Image is {{b}}% {{aa}}</center></p></h5>
+  
+
+
+<!-- Chart -->
+<div class="row">
+  <div class="column" style="padding-left: 50px;">
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+
+</body>
+
+
+<script>
+    // Calculate the percentage values of a and b
+    var b = {{ b }};
+    var a = 100 - b;
+    var aa = "{{ aa }}";
+
+    // Create a bar chart
+    var chart = new Chart(document.getElementById('myChart'), {
+        type: 'bar',
+        data: {
+            labels: ['', ''],
+            datasets: [{
+                data: [(aa == "Original Image" ? a : b), (aa == "Original Image" ? b : a)],
+                backgroundColor: ['#ff6384', '#36a2eb']
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }]
+            },
+            title: {
+                display: true,
+                text: 'Percentage Match for the Forged Image and Original image are as below '
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                callbacks: {
+                    label: function(tooltipItem, data) {
+                        var value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                        return value.toFixed(2) + '%';
+                    }
+                }
+            }
+        }
+    });
+
+    // Update the label of the first bar based on the value of aa
+    var labelElements = document.querySelectorAll('#myChart .chartjs-render-monitor .chartjs-tooltip .label');
+    if (labelElements.length > 0 && aa == "Forged Image") {
+        labelElements[0].innerHTML = "Forged Image";
+    } else if (labelElements.length > 0 && aa == "Original Image") {
+        labelElements[0].innerHTML = "Original Image";
+    }
+</script>
+
+
+
+
+
+
+</html>

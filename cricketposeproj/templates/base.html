@@ -1,0 +1,50 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web based App</title>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="/static/main.css" rel="stylesheet">      
+</head>
+<style>
+    
+    
+    .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    
+    }
+mark { 
+  background-color: white;
+  color: black;
+}
+</style>
+<body style="background-image: url('https://media.istockphoto.com/id/180868820/photo/cricket-batsman-about-to-strike-ball.jpg?b=1&s=170667a&w=0&k=20&c=jLMi5RFv-X_XoYg_vfMu_PbAXUM1yYs8H4Gu1VWWweY=');background-repeat: no-repeat;background-size: cover;">
+<center>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+		
+            
+          <h6><a href="{{ url_for('home') }}" style="color: white">BACK</a></h6>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="content" style="margin-top:2em">{% block content %}{% endblock %}</div>
+    </div>
+</center>
+</body>
+
+
+
+  
+</html>

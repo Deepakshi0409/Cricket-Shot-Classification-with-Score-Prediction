@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block content %}
+<br>
+<mark style="font-size: 150%;">Find the references details below</mark>
+<br>
+<style> 
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+mark { 
+  background-color: white;
+  color: black;
+}
+</style>
+
+<body>
+<br>
+<div>
+     <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+		<th>Link</th>
+
+		
+      </tr>
+	  
+    </thead>
+    <tbody>
+    <!-- jinja2 Technique -->
+     
+
+      <tr>
+        <td>IPL</td>
+		<td><a href="https://www.google.com/search?q=ipl&rlz=1C1GIWA_enIN805IN805&ei=oSNRZJG_BdLgseMP-q6owA8&gs_ssp=eJzj4tLP1TcwTorPyTU0YPRizizIAQArCQTR&oq=ipl&gs_lcp=Cgxnd3Mtd2l6LXNlcnAQARgBMgwIABCKBRBDEEYQ_QEyCwguEIMBELEDEIAEMg0IABCKBRCxAxCDARBDMgsIABCABBCxAxCDATIHCAAQigUQQzILCAAQgAQQsQMQgwEyCwgAEIAEELEDEIMBMgsIABCABBCxAxCDATILCAAQgAQQsQMQgwEyDQgAEIoFELEDEIMBEEM6DwgAEIoFEOoCELQCEEMYAToPCC4QigUQ6gIQtAIQQxgBOg0IABCPARDqAhC0AhgCOgsILhCABBCxAxCDAToLCAAQigUQsQMQgwE6BwguEIoFEEM6GQguEIAEELEDEIMBEJcFENwEEN4EEOAEGAM6DQguEIMBELEDEIoFEENKBAhBGABQAFjtHmCULGgCcAF4AIABuQGIAYoEkgEDMi4ymAEAoAEBsAEUwAEB2gEECAEYB9oBBggCEAEYCtoBBggDEAEYFA&sclient=gws-wiz-serp">Click Here</a></td>
+	</tr>
+	 <tr>
+        <td>Cricket Tracker</td>
+		<td><a href="https://www.crictracker.com/t20/ipl-indian-premier-league/">Click Here</a></td>
+	</tr>
+
+ 
+    
+    </tbody>
+  </table>
+</div>
+</body>
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(550)
+                    .height(500);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<h3 style="color: Black"><marquee>Thank you Visit Again</marquee></h3>
+{% endblock %}

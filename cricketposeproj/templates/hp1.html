@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="./static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="./static/css2/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  text-align: center;
+  padding: 32px;
+}
+
+.row {
+  display: -ms-flexbox; /* IE 10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE 10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  -ms-flex: 50%; /* IE 10 */
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+
+/* Styles for the navigation bar */
+.navbar {
+  background-color: #008B8B;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Styles for the result box */
+.result-box {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  margin: 80px auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+}
+
+/* Styles for the chart */
+.chart-box {
+  margin: 10px auto;
+  width: 30%;
+  max-width: 40px;
+  height:auto;
+}
+#myChart canvas {
+  width: 50px;
+  height: 50px;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation bar -->
+<div class="navbar">
+
+</div>
+
+<div class="result-box">
+<center><h6><a href="{{ url_for('about') }}" style="color: black">BACK</a></h6></center>
+  <h3 style='color: black; display: inline-block; white-space: nowrap;'>The Cricket Shot Predicted as: {{a}}</h3>
+ </div>
+ <h6><p><center>Based on the linear regression model prediction, it is estimated that the score will be {{b}}. However, it is important to note that this is only a prediction and the actual score may differ.</center></p></h6>
+  <h5><p><center>There is a possibility that the batsman can score {{b}} runs.</center></p></h5>
+  
+
+
+<!-- Chart -->
+<div class="row">
+  <div class="column" style="padding-left: 50px;">
+    <canvas id="myChart"></canvas>
+	
+  </div>
+</div>
+
+</body>
+
+
+<script>
+// get the dynamic value for output
+var output = parseFloat("{{b}}") / 100; // divide by 100 to get a percentage value
+
+// create an array for x-axis values
+var x_values = ["Score"]; // x-axis starts with "Score"
+
+// create an array for y-axis values
+var y_values = [];
+
+// populate the x and y arrays with values
+for (var i = 0; i <= 10; i++) {
+  var x_val = i * output*10+5; // increase x-axis values by 10% increments
+  x_values.push(x_val.toFixed(0)); // add x-axis values to array and format as whole numbers
+  y_values.push(i * 10); // add y-axis values to array in 10% increments
+}
+
+// create a new chart
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: x_values,
+        datasets: [{
+            label: '',
+            data: y_values,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+            pointBorderColor: 'rgba(255, 99, 132, 1)'
+        }]
+    },
+    options: {
+        scales: {
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Score'
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 100
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'upto 100'
+                }
+            }]
+        }
+    }
+});
+
+
+</script>
+
+
+
+
+
+
+
+</html>

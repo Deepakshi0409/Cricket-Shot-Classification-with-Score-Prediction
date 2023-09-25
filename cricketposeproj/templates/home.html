@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<style>
+mark { 
+  background-color: white;
+  color: black;
+}
+</style>
+
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>CricketShotApp</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+   </head>
+   <body style="background-image: url('https://i.gifer.com/5SJA.gif');background-repeat: no-repeat;background-size: cover;">
+      <header>
+         <div class="container">
+            <strong>
+               <nav>
+                  <ul class="menu">
+                     <li><a href="{{ url_for('home') }}">Home</a></li>
+                     <li><a href="{{ url_for('aboutt') }}">Reference</a></li>
+                  </ul>
+               </nav>
+            </strong>
+         </div>
+		 
+      </header>
+	  <center><h2 style="color: white">Welcome to Cricket Shot Prediction Web based Application<h2></p>
+	  <h5 style="color: Black"><marquee>This is Deep learning model for cricket shot proediction</marquee></h5>
+	  <h3><a href="{{ url_for('about') }}" style="color: black">Click Here to Proceed</a></h3>
+	  </center>
+
+      {% block content %}
+      {% endblock %}
+   </body>
+</html>

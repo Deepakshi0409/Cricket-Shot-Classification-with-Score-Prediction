@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block content %}
+<h2>Upload Your Image</h2>
+<style> 
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+mark { 
+  background-color: white;
+  color: black;
+}
+</style>
+<!--
+<div>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Upload.
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+		<div class="image-section" style="display:none;">
+        <div class="img-preview">
+        <div id="imagePreview">
+		
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+ <input type="submit" value="Predict">
+ </form>
+</div>-->
+<body>
+
+<div>
+    <form action="/predicttt" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Upload.ss
+        </label>
+		<div>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg" onchange="readURL(this);">
+		<img id="blah" src="#"/>
+        
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+ <input type="submit" value="Submit">
+ </form>
+</div>
+</body>
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(550)
+                    .height(500);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+{% endblock %}

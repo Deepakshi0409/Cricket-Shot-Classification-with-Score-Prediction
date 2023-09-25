@@ -1,0 +1,97 @@
+{% extends "base.html" %} {% block content %}
+
+
+<style> 
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+</style>
+<center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+	<h2 style='color: white; display: inline-block; white-space: nowrap;'>Cricket Shot Prediction Using Deep Learning</h2>
+
+
+
+
+	
+	<h5 style='color: white;'>Web Based Application based on the User uploaded Image this application can predict 4 different Cricket Shots</h5>
+	<h5 style='color: white;'>Upload Your Image Below</h5>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <label for="imageUpload" class="upload-label">
+            Upload.
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+    
+
+ 
+
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="loader" style="display:none;"></div>
+ <input type="submit" value="Predict">
+ <h4>{{a}}</h4>
+ </form>
+</center>
+{% endblock %}
